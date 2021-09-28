@@ -19,6 +19,7 @@ struct ContentView: View {
             Text("Player score \(playerScore) points")
                 .padding()
         }
+        
     }
 }
 
