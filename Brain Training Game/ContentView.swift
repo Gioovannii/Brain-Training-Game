@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            Text("Player score \(playerScore) score")
+            Text("Player score \(playerScore) points")
                 .padding()
         }
     }
