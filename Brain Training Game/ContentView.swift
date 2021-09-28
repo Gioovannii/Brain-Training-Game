@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     let possibleChoices = ["Rock", "Paper", "Scissors"]
     @State private var appCurrentChoice = Int.random(in: 0 ..< 2)
+    @State private var playerShouldLose = Bool.random()
+    @State private var playerScore = 0
     
     var body: some View {
         Text("Hello, world!")
