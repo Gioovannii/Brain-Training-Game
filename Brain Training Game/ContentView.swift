@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    let possibleChoices = ["Rock", "Paper", "Scissors"]
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
