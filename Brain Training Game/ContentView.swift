@@ -14,8 +14,11 @@ struct ContentView: View {
     @State private var playerScore = 0
     
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        VStack {
+            Text("Player score \(playerScore) score")
+                .padding()
+        }
     }
 }
 
