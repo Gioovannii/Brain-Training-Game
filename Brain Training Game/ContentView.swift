@@ -15,9 +15,16 @@ struct ContentView: View {
     
     var body: some View {
         
-        VStack {
-            Text("Player score \(playerScore) points")
-                .padding()
+        ZStack {
+            LinearGradient(colors: [.blue, .green, .purple], startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("Player score \(playerScore) points")
+                    .padding()
+                Text("App move is \(possibleChoices[appCurrentChoice])")
+                    .padding()
+            }
+            .background(Color.gray)
         }
         
     }
