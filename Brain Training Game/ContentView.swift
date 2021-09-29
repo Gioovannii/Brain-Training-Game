@@ -24,7 +24,6 @@ struct ContentView: View {
                 Text("App move is \(possibleChoices[appCurrentChoice])")
                     .padding()
             }
-            .background(Color.gray)
         }
         
     }
