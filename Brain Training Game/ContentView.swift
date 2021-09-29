@@ -12,6 +12,8 @@ struct ContentView: View {
     @State private var appCurrentChoice = Int.random(in: 0 ..< 2)
     @State private var shouldWin = Bool.random()
     @State private var playerScore = 0
+    @State private var textAlert = ""
+    @State private var showingAlert = false
     
     var body: some View {
         
