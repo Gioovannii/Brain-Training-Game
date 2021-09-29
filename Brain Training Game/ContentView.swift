@@ -16,7 +16,7 @@ struct ContentView: View {
     @State private var showingAlert = false
     
     var body: some View {
-        
+        let beatOponent = beatOpponent()
         ZStack {
             //            LinearGradient(colors: [.blue, .green, .purple], startPoint: .top, endPoint: .bottom)
             //                .edgesIgnoringSafeArea(.all)
@@ -35,7 +35,6 @@ struct ContentView: View {
                 }
                 
                 Group {
-                    let info = beatOpponent()
                     Button("Rock") {
                         print("Rock")
                         textAlert = "Player choose \n rock"
@@ -83,9 +82,13 @@ struct ContentView: View {
         var playerMove = ""
         
         if isWinning {
-            playerMove = possibleChoices[appCurrentChoice - 1]
-        } else {
             playerMove = possibleChoices[appCurrentChoice + 1]
+            print("Player move is wining => \(playerMove)")
+        } else if playerMove == possibleChoices[appCurrentChoice] {
+            playerMove
+        } else {
+            playerMove = possibleChoices[appCurrentChoice - 1]
+            print("Player move is losing => \(playerMove)")
         }
         return playerMove
     }
