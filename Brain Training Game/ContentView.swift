@@ -57,8 +57,17 @@ struct ContentView: View {
                         }
                         showingAlert.toggle()
                     }
+                    
                     Button("Scissors") {
                         print("Scissors")
+                        textAlert = "Player choose \n scissors"
+                        if info == "Rock" {
+                            print("Success")
+                        } else {
+                            print("Failure")
+                        }
+ 
+                        showingAlert.toggle()
                     }
                 }
                 .padding()
