@@ -82,6 +82,12 @@ struct ContentView: View {
         let isWinning = shouldWin
         var playerMove = ""
         
+        if isWinning {
+            playerMove = possibleChoices[appCurrentChoice - 1]
+        } else {
+            playerMove = possibleChoices[appCurrentChoice + 1]
+        }
+        return playerMove
     }
 }
 
