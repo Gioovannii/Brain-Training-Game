@@ -73,6 +73,14 @@ struct ContentView: View {
                 .padding()
             }
         }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Information"), message: Text(textAlert), dismissButton: .default(Text("Continue")))
+        }
+    }
+    
+    func beatOpponent() -> String {
+        let isWinning = shouldWin
+        var playerMove = ""
         
     }
 }
