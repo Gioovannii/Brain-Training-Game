@@ -31,6 +31,20 @@ struct ContentView: View {
                     Text("Yous should loose")
                         .padding()
                 }
+                
+                Group {
+                    
+                    Button("Rock") {
+                        print("Rock")
+                    }
+                    Button("Paper") {
+                        print("Paper")
+                    }
+                    Button("Scissors") {
+                        print("Scissors")
+                    }
+                }
+                .padding()
             }
         }
         
