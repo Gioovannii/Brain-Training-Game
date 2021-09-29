@@ -23,6 +23,14 @@ struct ContentView: View {
                     .padding()
                 Text("App move is \(possibleChoices[appCurrentChoice])")
                     .padding()
+                
+                if shouldWin {
+                    Text("You should win")
+                        .padding()
+                } else {
+                    Text("Yous should loose")
+                        .padding()
+                }
             }
         }
         
