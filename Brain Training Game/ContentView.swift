@@ -35,9 +35,16 @@ struct ContentView: View {
                 }
                 
                 Group {
-                    
+                    let info = beatOpponent()
                     Button("Rock") {
                         print("Rock")
+                        textAlert = "Player choose \n rock"
+                        if info == "Rock" {
+                            print("Success")
+                        } else {
+                            print("Failure")
+                        }
+                        showingAlert.toggle()
                     }
                     Button("Paper") {
                         print("Paper")
