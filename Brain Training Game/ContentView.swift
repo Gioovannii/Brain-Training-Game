@@ -38,34 +38,21 @@ struct ContentView: View {
                     Button("Rock") {
                         print("Rock")
                         textAlert = "Player choose \n rock"
-                        if info == "Rock" {
-                            print("Success")
-                        } else {
-                            print("Failure")
-                        }
+                        print(beatOponent)
                         showingAlert.toggle()
                     }
                     
                     Button("Paper") {
                         print("Paper")
                         textAlert = "Player choose \n paper"
-                        if info == "Rock" {
-                            print("Success")
-                        } else {
-                            print("Failure")
-                        }
+                        print(beatOponent)
                         showingAlert.toggle()
                     }
                     
                     Button("Scissors") {
                         print("Scissors")
                         textAlert = "Player choose \n scissors"
-                        if info == "Rock" {
-                            print("Success")
-                        } else {
-                            print("Failure")
-                        }
- 
+                        print(beatOponent)
                         showingAlert.toggle()
                     }
                 }
