@@ -20,10 +20,12 @@ struct ContentView: View {
     
     var body: some View {
             VStack {
-                Text("Player score \(playerScore) points")
+                Text("Your score is \(playerScore) points")
                     .padding()
-                Text("App move is \(possibleChoices[appCurrentChoice])")
+                    .font(.largeTitle)
+                Text("App move is \(possibleChoices[AppMove])")
                     .padding()
+                    .font(.title)
                 
                 if shouldWin {
                     Text("You should win")
