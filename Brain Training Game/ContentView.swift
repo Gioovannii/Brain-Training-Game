@@ -44,10 +44,27 @@ struct ContentView: View {
                     }
                 }
                 .padding()
-            }
-        }
-        .alert(isPresented: $showingAlert) {
-            Alert(title: Text("Information"), message: Text(textAlert), dismissButton: .default(Text("Continue")))
+                
+                HStack {
+                    Button("Next") {
+                        self.showEndGame = self.gameCount >= 10
+                        if self.gameCount < 10 {
+                            self.gameCount += 1
+                            self.nextMove()
+                            self.buttonStatus = false
+                        }
+                    }.alert(isPresented: $showEndGame) {
+                        Alert(title: Text("Game end"), message: Text("Your final score: \(playerScore)"))
+                    }
+                    
+                    Button("Reset") {
+                        self.shouldWin = false
+                        self.playerScore = 0
+                        self.gameCount = 0
+                        self.buttonStatus = false
+                        self.showEndGame = false
+                    }
+                }.frame(width: 320, height: 40, alignment: .center)
         }
     }
     
