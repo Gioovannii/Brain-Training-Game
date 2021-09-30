@@ -27,12 +27,9 @@ struct ContentView: View {
                     .padding()
                     .font(.title)
                 
-                if shouldWin {
-                    Text("You should win")
-                        .padding()
-                } else {
-                    Text("Yous should loose")
-                        .padding()
+                if showStatus {
+                    Text("You \(shouldWin ? "win" : "lose")")
+                        .foregroundColor(.red)
                 }
                 
                 Group {
