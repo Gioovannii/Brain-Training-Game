@@ -68,9 +68,12 @@ struct ContentView: View {
         }
     }
     
-    func beatOpponent() -> String {
-        let isWinning = shouldWin
-        var playerMove = ""
+    private func beatOpponent(appNumber: Int, userNumber: Int) {
+        if self.gameCount >= 10 {
+            showStatus = false
+            return
+        }
+        buttonStatus = true
         
         if isWinning {
             playerMove = possibleChoices[appCurrentChoice + 1]
