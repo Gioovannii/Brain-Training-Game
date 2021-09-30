@@ -13,13 +13,16 @@ struct ContentView: View {
     @State private var showStatus = false
     @State private var AppMove = Int.random(in: 0 ... 2)
     @State private var playerScore = 0
+    @State private var questionNumber = 0
     @State private var gameCount = 0
     @State private var buttonStatus = false
     @State private var showEndGame = false
     
     
+    
     var body: some View {
             VStack {
+                Text("Question \(questionNumber)/10")
                 Text("Your score is \(playerScore) points")
                     .padding()
                     .font(.largeTitle)
@@ -34,35 +37,39 @@ struct ContentView: View {
                 
                 HStack {
                     ForEach(0 ..< 3) { number in
-                        Button("\(self.possibleChoices[number])") {
-                            self.showStatus = true
-                            self.beatOpponent(appNumber: self.AppMove, userNumber: number)
-                            if self.shouldWin {
-                                self.playerScore += 1
+                        Button("\(possibleChoices[number])") {
+                            showStatus = true
+                            beatOpponent(appNumber: AppMove, userNumber: number)
+                            if shouldWin {
+                                playerScore += 1
                             }
-                        }.disabled(self.gameCount >= 10 || self.buttonStatus)
+                        }.disabled(gameCount >= 10 || buttonStatus)
                     }
                 }
                 .padding()
                 
                 HStack {
-                    Button("Next") {
-                        self.showEndGame = self.gameCount >= 10
-                        if self.gameCount < 10 {
-                            self.gameCount += 1
-                            self.nextMove()
-                            self.buttonStatus = false
-                        }
-                    }.alert(isPresented: $showEndGame) {
-                        Alert(title: Text("Game end"), message: Text("Your final score: \(playerScore)"))
+                    Button("Reset") {
+                        shouldWin = false
+                        playerScore = 0
+                        gameCount = 0
+                        buttonStatus = false
+                        showEndGame = false
                     }
                     
-                    Button("Reset") {
-                        self.shouldWin = false
-                        self.playerScore = 0
-                        self.gameCount = 0
-                        self.buttonStatus = false
-                        self.showEndGame = false
+                    Button("Next") {
+                        showEndGame = gameCount >= 10
+                        if gameCount < 10 {
+                            gameCount += 1
+                            questionNumber += 1
+                            newRound()
+                            buttonStatus = false
+                        }
+                    }.alert(isPresented: $showEndGame) {
+                        Alert(title: Text("Game end"), message: Text("Your final score: \(playerScore)"), dismissButton: .default(Text("OK")) {
+                            questionNumber = 0
+                            gameCount = 0
+                        })
                     }
                 }.frame(width: 320, height: 40, alignment: .center)
         }
@@ -97,7 +104,7 @@ struct ContentView: View {
         }
     }
     
-    func nextMove() {
+    func newRound() {
         AppMove = Int.random(in: 0 ... 2)
         showStatus = false
     }
