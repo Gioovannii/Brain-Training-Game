@@ -95,7 +95,11 @@ struct ContentView: View {
                 shouldWin = false
             }
         }
-        return playerMove
+    }
+    
+    func nextMove() {
+        AppMove = Int.random(in: 0 ... 2)
+        showStatus = false
     }
 }
 
