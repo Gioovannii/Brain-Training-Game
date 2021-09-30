@@ -19,10 +19,6 @@ struct ContentView: View {
     
     
     var body: some View {
-        let beatOponent = beatOpponent()
-        ZStack {
-            //            LinearGradient(colors: [.blue, .green, .purple], startPoint: .top, endPoint: .bottom)
-            //                .edgesIgnoringSafeArea(.all)
             VStack {
                 Text("Player score \(playerScore) points")
                     .padding()
