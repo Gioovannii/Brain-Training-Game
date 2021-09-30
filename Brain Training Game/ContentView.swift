@@ -32,26 +32,15 @@ struct ContentView: View {
                         .foregroundColor(.red)
                 }
                 
-                Group {
-                    Button("Rock") {
-                        print("Rock")
-                        textAlert = "Player choose \n rock"
-                        print(beatOponent)
-                        showingAlert.toggle()
-                    }
-                    
-                    Button("Paper") {
-                        print("Paper")
-                        textAlert = "Player choose \n paper"
-                        print(beatOponent)
-                        showingAlert.toggle()
-                    }
-                    
-                    Button("Scissors") {
-                        print("Scissors")
-                        textAlert = "Player choose \n scissors"
-                        print(beatOponent)
-                        showingAlert.toggle()
+                HStack {
+                    ForEach(0 ..< 3) { number in
+                        Button("\(self.possibleChoices[number])") {
+                            self.showStatus = true
+                            self.beatOpponent(appNumber: self.AppMove, userNumber: number)
+                            if self.shouldWin {
+                                self.playerScore += 1
+                            }
+                        }.disabled(self.gameCount >= 10 || self.buttonStatus)
                     }
                 }
                 .padding()
