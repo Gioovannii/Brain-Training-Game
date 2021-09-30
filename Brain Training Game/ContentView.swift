@@ -13,8 +13,10 @@ struct ContentView: View {
     @State private var showStatus = false
     @State private var AppMove = Int.random(in: 0 ... 2)
     @State private var playerScore = 0
-    @State private var textAlert = ""
-    @State private var showingAlert = false
+    @State private var gameCount = 0
+    @State private var buttonStatus = false
+    @State private var showEndGame = false
+    
     
     var body: some View {
         let beatOponent = beatOpponent()
