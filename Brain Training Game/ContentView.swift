@@ -75,14 +75,25 @@ struct ContentView: View {
         }
         buttonStatus = true
         
-        if isWinning {
-            playerMove = possibleChoices[appCurrentChoice + 1]
-            print("Player move is wining => \(playerMove)")
-        } else if playerMove == possibleChoices[appCurrentChoice] {
-            playerMove
-        } else {
-            playerMove = possibleChoices[appCurrentChoice - 1]
-            print("Player move is losing => \(playerMove)")
+        switch AppMove {
+        case 0:
+            if userNumber == 1 {
+                shouldWin = true
+            } else {
+                shouldWin = false
+            }
+        case 1:
+            if userNumber == 2 {
+                shouldWin = true
+            } else {
+                shouldWin = false
+            }
+        default:
+            if userNumber == 0 {
+                shouldWin = true
+            } else {
+                shouldWin = false
+            }
         }
         return playerMove
     }
