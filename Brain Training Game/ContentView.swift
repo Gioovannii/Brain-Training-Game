@@ -20,86 +20,71 @@ struct ContentView: View {
     
     
     var body: some View {
-            VStack {
-                Text("Question \(questionNumber)/10")
-                Text("Your score is \(playerScore) points")
-                    .padding()
-                    .font(.largeTitle)
-                Text("App move is \(possibleChoices[AppMove])")
-                    .padding()
+        VStack {
+            Text("App chose \(possibleChoices[appCurrentChoice])")
+                .font(.largeTitle)
+                .bold()
+                .padding()
+            
+            if shouldWin { Text("You should win")
                     .font(.title)
-                
-                if showStatus {
-                    Text("You \(shouldWin ? "win" : "lose")")
-                        .foregroundColor(.red)
-                }
-                
-                HStack {
-                    ForEach(0 ..< 3) { number in
-                        Button("\(possibleChoices[number])") {
-                            showStatus = true
-                            beatOpponent(appNumber: AppMove, userNumber: number)
-                            if shouldWin {
-                                playerScore += 1
-                            }
-                        }.disabled(gameCount >= 10 || buttonStatus)
+                    .padding()
+                    .foregroundColor(.green)
+            } else { Text("You should lose")
+                    .font(.title)
+                    .padding()
+                    .foregroundColor(.red)
+            }
+            
+            HStack {
+                ForEach(possibleChoices, id: \.self) { name in
+                    
+                    Button("\(name)") {
+                        print("User pressed \(name)")
+                        beatOponent(userChoice: name, appChoice: appCurrentChoice)
                     }
+                    .font(.headline)
                 }
                 .padding()
                 
-                HStack {
-                    Button("Reset") {
-                        shouldWin = false
-                        playerScore = 0
-                        gameCount = 0
-                        buttonStatus = false
-                        showEndGame = false
-                    }
-                    
-                    Button("Next") {
-                        showEndGame = gameCount >= 10
-                        if gameCount < 10 {
-                            gameCount += 1
-                            questionNumber += 1
-                            newRound()
-                            buttonStatus = false
-                        }
-                    }.alert(isPresented: $showEndGame) {
-                        Alert(title: Text("Game end"), message: Text("Your final score: \(playerScore)"), dismissButton: .default(Text("OK")) {
-                            questionNumber = 0
-                            gameCount = 0
-                        })
-                    }
-                }.frame(width: 320, height: 40, alignment: .center)
+            }
+            .padding(.bottom, 90)
+            
+            Text("Player score : \(playerScore) points")
+                .font(.title3)
+                .padding()
         }
     }
     
-    private func beatOpponent(appNumber: Int, userNumber: Int) {
-        if self.gameCount >= 10 {
-            showStatus = false
-            return
-        }
-        buttonStatus = true
-        
-        switch AppMove {
+    func beatOponent(userChoice: String, appChoice: Int) {
+        switch appChoice {
         case 0:
-            if userNumber == 1 {
-                shouldWin = true
+            if shouldWin && userChoice == "Scissors" {
+                playerScore += 1
+            } else if !shouldWin && userChoice == "Paper" {
+                playerScore += 1
             } else {
-                shouldWin = false
+                newRound()
             }
         case 1:
-            if userNumber == 2 {
-                shouldWin = true
+            if shouldWin && userChoice == "Rock" {
+                playerScore += 1
+            } else if !shouldWin && userChoice == "Paper" {
+                playerScore += 1
             } else {
-                shouldWin = false
+                newRound()
             }
+        case 2:
+            if shouldWin && userChoice == "Paper" {
+                playerScore += 1
+            } else if !shouldWin && userChoice == "Rock" {
+                playerScore += 1
+            } else {
+                newRound()
+            }
+            
         default:
-            if userNumber == 0 {
-                shouldWin = true
-            } else {
-                shouldWin = false
-            }
+            fatalError()
         }
     }
     
