@@ -70,8 +70,10 @@ struct ContentView: View {
             }
         case 1:
             if shouldWin && userChoice == "Rock" {
+                print("Player was trying to win. App chose \(possibleChoices[appCurrentChoice]) and player choose \(userChoice)")
                 playerScore += 1
             } else if !shouldWin && userChoice == "Paper" {
+                print("Player was trying to lose. App chose \(possibleChoices[appCurrentChoice]) and player choose \(userChoice)")
                 playerScore += 1
             } else {
                 newRound()
