@@ -74,7 +74,6 @@ struct ContentView: View {
                     }
                     showingAlert = true
                 }
-                
             }
             .padding(.bottom, 90)
             
@@ -86,7 +85,6 @@ struct ContentView: View {
                     Alert(title: Text(alertTitle), message: Text("App choice \(possibleChoices[appCurrentChoice])"), dismissButton: .default(Text("OK")) {
                         nextRound()
                     })
-                    
                 }
         }
     }
