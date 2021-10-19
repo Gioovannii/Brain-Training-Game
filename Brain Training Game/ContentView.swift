@@ -18,9 +18,6 @@ struct ContentView: View {
     
     let possibleChoices = ["Rock", "Paper", "Scissors"]
     
-    
-    
-    
     var body: some View {
         VStack {
             Text("App chose \(possibleChoices[appCurrentChoice])")
