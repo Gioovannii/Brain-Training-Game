@@ -25,15 +25,10 @@ struct ContentView: View {
                 .bold()
                 .padding()
             
-            if shouldWin { Text("You should win")
-                    .font(.title)
-                    .padding()
-                    .foregroundColor(.green)
-            } else { Text("You should lose")
-                    .font(.title)
-                    .padding()
-                    .foregroundColor(.red)
-            }
+            Text("You should \(shouldWin ? "win" : "lose")")
+                .foregroundColor(shouldWin ? .green : .red)
+                .font(.title)
+                .padding()
             
             HStack {
                 ForEach(possibleChoices, id: \.self) { name in
