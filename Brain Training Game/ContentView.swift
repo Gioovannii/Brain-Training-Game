@@ -78,18 +78,28 @@ struct ContentView: View {
             }
             .padding(.bottom, 90)
             
-            Text("Player score : \(playerScore) points")
+            Text("Player score : \(score) points")
                 .font(.title3)
                 .padding()
             
-        default:
-            fatalError()
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text(alertTitle), message: Text("App choice \(possibleChoices[appCurrentChoice])"), dismissButton: .default(Text("OK")) {
+                        nextRound()
+                    })
+                    
+                }
         }
     }
     
-    func newRound() {
+    func nextRound() {
         appCurrentChoice = Int.random(in: 0...2)
         shouldWin = Bool.random()
+        roundCount += 1
+        if roundCount < 11 {
+            
+        } else {
+            roundCount = 0
+        }
     }
 }
 
