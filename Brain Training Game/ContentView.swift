@@ -10,9 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @State private var appCurrentChoice = Int.random(in: 0...2)
     @State private var shouldWin = Bool.random()
-
-    @State private var userChoice = 1
-    @State private var playerScore = 0
+    
+    @State private var score = 0
+    @State private var roundCount = 0
+    @State private var alertTitle = ""
+    @State private var showingAlert = false
     
     let possibleChoices = ["Rock", "Paper", "Scissors"]
     
