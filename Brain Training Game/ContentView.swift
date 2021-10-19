@@ -31,15 +31,49 @@ struct ContentView: View {
                 .padding()
             
             HStack {
-                ForEach(possibleChoices, id: \.self) { name in
-                    
-                    Button("\(name)") {
-                        print("User pressed \(name)")
-                        beatOponent(userChoice: name, appChoice: appCurrentChoice)
+                Button("Rock") {
+                    if possibleChoices[appCurrentChoice] == possibleChoices[2] && shouldWin || possibleChoices[appCurrentChoice] == possibleChoices[1] && !shouldWin {
+                        score += 1
+                        alertTitle = "You Won :)"
+                    } else if possibleChoices[appCurrentChoice] == possibleChoices[0] && shouldWin || possibleChoices[appCurrentChoice] == possibleChoices[0] && !shouldWin {
+                        score += 0
+                        alertTitle = "We're equal :/"
+                    } else {
+                        score -= 1
+                        alertTitle = "You lost :("
                     }
-                    .font(.headline)
+                    showingAlert = true
                 }
-                .padding()
+                
+                Button("Paper") {
+                    
+                    if possibleChoices[appCurrentChoice] == possibleChoices[0] && shouldWin || possibleChoices[appCurrentChoice] == possibleChoices[2] && !shouldWin {
+                        score += 1
+                        alertTitle = "You Won :)"
+                    } else if possibleChoices[appCurrentChoice] == possibleChoices[1] && shouldWin || possibleChoices[appCurrentChoice] == possibleChoices[1] && !shouldWin {
+                        score += 0
+                        alertTitle = "We're equal :/"
+                    } else {
+                        score -= 1
+                        alertTitle = "You lost :("
+                    }
+                    showingAlert = true
+                    
+                }
+                
+                Button("Scissors") {
+                    if possibleChoices[appCurrentChoice] == possibleChoices[1] && shouldWin || possibleChoices[appCurrentChoice] == possibleChoices[0] && !shouldWin {
+                        score += 1
+                        alertTitle = "You Won :)"
+                    } else if possibleChoices[appCurrentChoice] == possibleChoices[2] && shouldWin || possibleChoices[appCurrentChoice] == possibleChoices[2] && !shouldWin {
+                        score += 0
+                        alertTitle = "We're equal :/"
+                    } else {
+                        score -= 1
+                        alertTitle = "You lost :("
+                    }
+                    showingAlert = true
+                }
                 
             }
             .padding(.bottom, 90)
@@ -47,41 +81,6 @@ struct ContentView: View {
             Text("Player score : \(playerScore) points")
                 .font(.title3)
                 .padding()
-        }
-    }
-    
-    func beatOponent(userChoice: String, appChoice: Int) {
-        switch appChoice {
-        case 0:
-            if shouldWin && userChoice == "Scissors" {
-                print("Player was trying to win. App chose \(possibleChoices[appCurrentChoice]) and player choose \(userChoice)")
-                playerScore += 1
-            } else if !shouldWin && userChoice == "Paper" {
-                print("Player was trying to lose. App chose \(possibleChoices[appCurrentChoice]) and player choose \(userChoice)")
-                playerScore += 1
-            } else {
-                newRound()
-            }
-        case 1:
-            if shouldWin && userChoice == "Rock" {
-                print("Player was trying to win. App chose \(possibleChoices[appCurrentChoice]) and player choose \(userChoice)")
-                playerScore += 1
-            } else if !shouldWin && userChoice == "Paper" {
-                print("Player was trying to lose. App chose \(possibleChoices[appCurrentChoice]) and player choose \(userChoice)")
-                playerScore += 1
-            } else {
-                newRound()
-            }
-        case 2:
-            if shouldWin && userChoice == "Paper" {
-                print("Player was trying to win. App chose \(possibleChoices[appCurrentChoice]) and player choose \(userChoice)")
-                playerScore += 1
-            } else if !shouldWin && userChoice == "Rock" {
-                print("Player was trying to lose. App chose \(possibleChoices[appCurrentChoice]) and player choose \(userChoice)")
-                playerScore += 1
-            } else {
-                newRound()
-            }
             
         default:
             fatalError()
